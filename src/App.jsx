@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import Header from './components/header';
 import Settings from './components/Settings';
 import ChatMessage from './components/ChatMessage';
 import InputForm from './components/InputForm';
+import Header from './components/Header';
 
 const App = () => {
   const [showSettings, setShowSettings] = useState(true);
