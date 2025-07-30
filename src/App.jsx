@@ -27,7 +27,7 @@ const App = () => {
 
   const getLLMResponseAPI = async (userMessage) => {
     try {
-          const response = await fetch('http://127.0.0.1:8000/v1/chat', {
+          const response = await fetch('https://ai-chatbot-be-mp3i.onrender.com/v1/chat', {
               method: 'POST',
               headers: {
               'Content-Type': 'application/json',
