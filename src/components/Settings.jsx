@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import './common.css';
 import { gptModels } from '../utils/commonUtils';
+import './common.css';
 
 const Settings = (props) => {
     // eslint-disable-next-line react/prop-types
     const { selectedModel, setSelectedModel, temperature, setTemperature } = props;
     const [apiKey, setApiKey] = useState('');
+    const [isGeminiModel, setIsGeminiModel] = useState(true);
+
+    const changeGPTModel = gptModel => {
+      setSelectedModel(gptModel);
+      setIsGeminiModel(gptModel == gptModels[0].value);
+    }
     
     return (
         <div className="bg-white border-b px-6 py-4 space-y-4">
@@ -13,7 +19,7 @@ const Settings = (props) => {
             {/* API Key Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                OpenAI API Key
+                OpenAI API Key (Optional)
               </label>
               <input
                 type="password"
@@ -21,17 +27,18 @@ const Settings = (props) => {
                 onChange={(e) => setApiKey(e.target.value)}
                 placeholder="sk-..."
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={isGeminiModel}
               />
             </div>
 
             {/* Model Selector */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                GPT Model
+                LLM Model
               </label>
               <select
                 value={selectedModel}
-                onChange={(e) => setSelectedModel(e.target.value)}
+                onChange={(e) => changeGPTModel(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
               >
                 {gptModels.map((model) => (
@@ -45,7 +52,7 @@ const Settings = (props) => {
             {/* Temperature Slider */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Temperature: {temperature}
+                Temperature: <span className='text-red-600'>{temperature}</span>
               </label>
               <input
                 type="range"

@@ -9,8 +9,8 @@ const Header = (props) => {
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                     <Bot className="w-8 h-8 text-blue-600" />
-                    <div>
-                        <h1 className="text-xl font-semibold text-gray-900">AI ChatBot</h1>
+                    <div className="align-center">
+                        <h1 className="text-xl font-semibold text-gray-900">GitLab ChatBot</h1>
                         <p className="text-sm text-gray-500">
                             Model: {gptModels.find(m => m.value === selectedModel)?.label} | 
                             Temperature: {temperature}
